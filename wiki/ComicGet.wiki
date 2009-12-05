@@ -28,6 +28,7 @@ a) In the comic website that I uses, they uses javascript to obscure the full UR
 b) Part of the URL path uses Chinese encoding.
 
 The solution to the above two problems is to find out the full, encoded URL of the jpg file. In Firefox, I can drag the jpg into the browser's web address box, it will open up the jpg file. Then, right click on the jpg file and choose "Properties". In there you will find the full, encoded URL of the jpg file. Use this path for jpgUrl.
+
 pages specifies the total number of pages for this chapter of comic
 
 dir specifies the directory (relative to your running directory) where you want the comic to be stored
