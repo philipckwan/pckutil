@@ -18,7 +18,7 @@ pages=22
 
 dir=out
 
-urlJpgKey=_
+urlJpgKey=`_`
 
 --------------------
 htmlUrl specifies the first page of the comic of your choice
