@@ -16,7 +16,7 @@ import java.net.URLConnection;
 public class ComicGet {
 	public static final String HTML_EXTENSION = ".htm";
 	public static final String URL_PATH_SEPARATOR = "/";
-	public static final String URL_JPG_KEY = "_";
+	//public static final String URL_JPG_KEY = "+";
 	public static final String JPG_EXTENSION = ".jpg";
 	
 	public static final String configFile = "input.txt";
@@ -24,11 +24,13 @@ public class ComicGet {
 	public static final String KEYWORD_JPGURL = "jpgUrl=";	
 	public static final String KEYWORD_DIR = "dir=";
 	public static final String KEYWORD_PAGES = "pages=";
+	public static final String KEYWORD_URLJPGKEY = "urlJpgKey=";
 	
 	public static String htmlUrl = null;
 	public static String jpgUrl = null;
 	public static String dir = null;
 	public static int pages = 0;	
+	public static String urlJpgKey = "_";
 	
 
 	/**
@@ -52,10 +54,11 @@ public class ComicGet {
 		String configLine = null;
 		try {
 			while ((configLine = br.readLine()) != null) {
-				if (configLine.indexOf(KEYWORD_HTMLURL) >= 0) htmlUrl = configLine.substring(configLine.indexOf(KEYWORD_HTMLURL) + KEYWORD_HTMLURL.length());
-				if (configLine.indexOf(KEYWORD_JPGURL) >= 0) jpgUrl = configLine.substring(configLine.indexOf(KEYWORD_JPGURL) + KEYWORD_JPGURL.length());
-				if (configLine.indexOf(KEYWORD_DIR) >= 0) dir = configLine.substring(configLine.indexOf(KEYWORD_DIR) + KEYWORD_DIR.length());
-				if (configLine.indexOf(KEYWORD_PAGES) >= 0) pages = Integer.parseInt(configLine.substring(configLine.indexOf(KEYWORD_PAGES) + KEYWORD_PAGES.length()));
+				if (configLine.indexOf(KEYWORD_HTMLURL) >= 0) htmlUrl = configLine.substring(configLine.indexOf(KEYWORD_HTMLURL) + KEYWORD_HTMLURL.length()).trim();
+				if (configLine.indexOf(KEYWORD_JPGURL) >= 0) jpgUrl = configLine.substring(configLine.indexOf(KEYWORD_JPGURL) + KEYWORD_JPGURL.length()).trim();
+				if (configLine.indexOf(KEYWORD_DIR) >= 0) dir = configLine.substring(configLine.indexOf(KEYWORD_DIR) + KEYWORD_DIR.length()).trim();
+				if (configLine.indexOf(KEYWORD_PAGES) >= 0) pages = Integer.parseInt(configLine.substring(configLine.indexOf(KEYWORD_PAGES) + KEYWORD_PAGES.length()).trim());
+				if (configLine.indexOf(KEYWORD_URLJPGKEY) >= 0) urlJpgKey = configLine.substring(configLine.indexOf(KEYWORD_URLJPGKEY) + KEYWORD_URLJPGKEY.length()).trim();
 			}
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -73,7 +76,7 @@ public class ComicGet {
 
 		
 		int jpgHeadIdx = jpgUrl.lastIndexOf(URL_PATH_SEPARATOR);
-		int jpgTailIdx = jpgUrl.lastIndexOf(URL_JPG_KEY);
+		int jpgTailIdx = jpgUrl.lastIndexOf(urlJpgKey);
 		String comicPattern = jpgUrl.substring(jpgHeadIdx, jpgTailIdx + 1);
 		jpgUrl = jpgUrl.substring(0, jpgHeadIdx);
 		String htmlLine;
@@ -102,7 +105,10 @@ public class ComicGet {
 				
 				
 				URL url = new URL(comicUrl);
+				
 				URLConnection urlConn = url.openConnection();
+				
+				urlConn.setRequestProperty("Referer", htmlUrl);
 				int contentLength = urlConn.getContentLength();
 				//System.out.println("contentType: " + contentType + "; contentLength: " + contentLength);
 				BufferedInputStream bis = new BufferedInputStream(urlConn.getInputStream());
@@ -129,7 +135,9 @@ public class ComicGet {
 					if (pages > 100) outputFileStr += "0";
 				} 
 				outputFileStr += i + JPG_EXTENSION;
-
+				//System.out.println("dir:" + dir + ";");
+				//System.out.println("File.separator:" + File.separator + ";");
+				//System.out.println("outputFileStr:" + outputFileStr + ";");
 				FileOutputStream fos = new FileOutputStream(new File(dir + File.separator + outputFileStr));
 				fos.write(data);
 				fos.flush();
