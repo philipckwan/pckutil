@@ -39,7 +39,7 @@ urlJpgKey specifies the keyword separator where the jpg filename changes on the 
 
 2) So given the above instruction, my layout of the directory before I start the downloading will be as follows:
 
-pckutil.jar
+pckutil-2.0.jar
 
 input.txt
 
@@ -47,7 +47,7 @@ out/
 
 3) Invoke the program like this:
 
-> java -cp pckutil.jar com.pck.util.ComicGet
+> java -cp pckutil-2.0.jar com.pck.util.ComicGet
 
 4) Watch the comic being downloaded to the destination directory.
 
