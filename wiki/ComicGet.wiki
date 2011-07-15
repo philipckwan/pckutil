@@ -35,7 +35,7 @@ pages specifies the total number of pages for this chapter of comic
 
 dir specifies the directory (relative to your running directory) where you want the comic to be stored
 
-urlJpgKey specifies the keyword separator where the jpg filename changes on the right. For the jpgUrl example above, it is the "_" that separates the jpg name on the right that gets changed for the next jpg file. 
+urlJpgKey specifies the keyword separator where the jpg filename changes on the right. For the jpgUrl example above, it is the "`_`" that separates the jpg name on the right that gets changed for the next jpg file. 
 
 2) So given the above instruction, my layout of the directory before I start the downloading will be as follows:
 
