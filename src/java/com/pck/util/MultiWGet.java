@@ -14,7 +14,7 @@ import com.pck.common.WorkItem;
 public class MultiWGet {
 	
 	
-	public static final String configFile = "input2.txt";
+	public static final String configFile = "input.txt";
 	//public static final String dataFile = "data.txt";
 	
 	public static final String KEYWORD_FILE_URL = "fileUrl=";
