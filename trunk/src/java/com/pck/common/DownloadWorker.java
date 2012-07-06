@@ -28,7 +28,7 @@ public class DownloadWorker implements Runnable {
 		try {
 			while (true) {
 				WorkItem work = takeWork();
-				System.out.println("DownloadWorker.run: Thread[" + id + "] will download [" + work.getURL() + "] to path [" + work.getFilePath() + "]");
+				System.out.println("DownloadWorker.run: START Thread[" + id + "] downloads [" + work.getURL() + "] to path [" + work.getFilePath() + "]");
 				
 				URL url = work.getURL();
 				String filePath = work.getFilePath();
@@ -54,7 +54,7 @@ public class DownloadWorker implements Runnable {
 				fos.flush();
 				fos.close();
 				
-				System.out.println("DownloadWorker.run: Thread[" + id + "] finished a download successfully");
+				System.out.println("DownloadWorker.run: END Thread[" + id + "] downloads [" + work.getURL() + "] to path [" + work.getFilePath() + "]");				
 				numDownloaded++;
 			}
 		} catch (InterruptedException e) {
