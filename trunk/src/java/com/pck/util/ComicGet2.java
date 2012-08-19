@@ -41,6 +41,11 @@ public class ComicGet2 {
 	public static void main(String[] args) {
 		Logger.debug("ComicGet.main: START");
 		
+		/** 
+		 * TODO
+		 * 1) Make a manual page with descriptions on the input properties
+		 * 2) Handle file not found error better
+		 */
 		PropertiesManager.initWithFile(CONFIG_FILE); 
 		
 		htmlUrl = PropertiesManager.getProperty(KEYWORD_HTMLURL);
