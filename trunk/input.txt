@@ -1,0 +1,6 @@
+htmlUrl=http://comic2.kukudm.com/comiclist/277/27426/1.htm
+jpgUrl=http://cc.kukudm.com/kuku8comic8/201206/20120610/%E7%81%AB%E5%87%A4%E7%87%8E%E5%8E%9F368-369/comic.kukudm.com_001039.jpg
+dir=fire/369
+pages=40
+jpgPattern=comic.kukudm.com_
+numThreads=10
